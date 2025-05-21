@@ -2,6 +2,8 @@ from rest_framework import viewsets, generics
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter, OrderingFilter
 from .filters import StoreFilter
+from rest_framework import permissions
+from .permissions import *
 from .models import (UserProfile, Category, Store, Contact, Product, Combo,
                      Cart, Order, Courier, StoreReview, CourierRating)
 from .serializer import (UserProfileSerializers, CategorySerializers, StoreSerializers, ContactSerializers,
@@ -53,6 +55,8 @@ class CourierViewSet(viewsets.ModelViewSet):
 class StoreReviewViewSet(viewsets.ModelViewSet):
     queryset = StoreReview.objects.all()
     serializer_class = StoreReviewSerializers
+
+    permission_classes = [permissions.IsAuthenticated]
 
 class CourierRatingViewSet(viewsets.ModelViewSet):
     queryset = CourierRating.objects.all()
