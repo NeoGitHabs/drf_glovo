@@ -15,6 +15,11 @@ class UserProfileViewSet(viewsets.ModelViewSet):
     queryset = UserProfile.objects.all()
     serializer_class = UserProfileSerializers
 
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        return UserProfile.objects.filter(id=self.request.user.id)
+
 class CategoryViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializers
@@ -40,17 +45,34 @@ class ComboViewSet(viewsets.ModelViewSet):
     queryset = Combo.objects.all()
     serializer_class = ComboSerializers
 
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        return UserProfile.objects.filter(id=self.request.user.id)
+
 class CartViewSet(viewsets.ModelViewSet):
     queryset = Cart.objects.all()
     serializer_class = CartSerializers
+
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        return UserProfile.objects.filter(id=self.request.user.id)
 
 class OrderViewSet(viewsets.ModelViewSet):
     queryset = Order.objects.all()
     serializer_class = OrderSerializers
 
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        return UserProfile.objects.filter(id=self.request.user.id)
+
 class CourierViewSet(viewsets.ModelViewSet):
     queryset = Courier.objects.all()
     serializer_class = CourierSerializers
+
+    permission_classes = [permissions.IsAuthenticated]
 
 class StoreReviewViewSet(viewsets.ModelViewSet):
     queryset = StoreReview.objects.all()
@@ -61,3 +83,8 @@ class StoreReviewViewSet(viewsets.ModelViewSet):
 class CourierRatingViewSet(viewsets.ModelViewSet):
     queryset = CourierRating.objects.all()
     serializer_class = CourierRatingSerializers
+
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        return UserProfile.objects.filter(id=self.request.user.id)

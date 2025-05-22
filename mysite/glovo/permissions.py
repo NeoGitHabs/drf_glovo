@@ -1,14 +1,17 @@
 from rest_framework import permissions
 
 
-class CheckRole(permissions.BasePermission):
-    def has_object_permission(self, request, view, obj):
-        if request.method in permissions.SAFE_METHODS:
-            return True
-        return obj.hotel_owner == request.user
+# class CheckRole(permissions.BasePermission):
+#     def has_object_permission(self, request, view, obj):
+#         if request.method in permissions.SAFE_METHODS:
+#             return True
+#         return obj.hotel_owner == request.user
+#
+# class CheckUserRoleReviews(permissions.BasePermission):
+#     def has_permission(self, request, view):
+#         if request.user.role == 'owner':
+#             return False
+#         return True
 
-class CheckUserRoleReviews(permissions.BasePermission):
-    def has_permission(self, request, view):
-        if request.user.role == 'owner':
-            return False
-        return True
+# def get_queryset(self):
+#     return UserProfile.objects.filter(id=self.request.user.id)
